@@ -3,31 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Webpage</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>Sigma Video</title>
     <style>
         body {
-            font-family: Montserrat;
-            margin: 20px;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
         }
-        p {
-            margin-top: 0;
+        .container {
+            text-align: center;
+            width: 80%; /* Adjust the container width as needed */
         }
-        h1 {
-            margin: 0px
-        }
-        a {
-            color: rgb(0, 94, 255);
-            cursor: pointer;
+        video {
+            width: 100%;
+            height: auto; /* Maintain aspect ratio */
+            border: 1px solid #ccc;
+            border-radius: 1vw;
+            aspect-ratio: 16 / 9;
+            background: black;
         }
     </style>
 </head>
 <body>
-    <h1>SigmaVideo Player</h1>
-    <p>Play videos with sigma video.</p>
-    <br>
-    <a href="video.html?video=1">Dog</a>
-    <br>
-    <a href="video.html?video=2">Spiderman</a>
+    <div class="container">
+        <video id="videoPlayer" controls>
+            <source id="videoSource" src="" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <script>
+        function getQueryParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        const videoParam = getQueryParameter('video');
+        const videoSource = document.getElementById('videoSource');
+
+        if (videoParam === '1') {
+            videoSource.src = 'video.mp4';
+        } else if (videoParam === '2') {
+            videoSource.src = 'video2.mp4';
+        } else if (videoParam === '3') {
+            videoSource.src = 'video3.mp4';
+        } else if (videoParam === '4') {
+            videoSource.src = 'video4.mp4';
+        } else {
+            videoSource.src = 'default.mp4'; // Default video if no parameter or unknown parameter
+        }
+
+        document.getElementById('videoPlayer').load();
+    </script>
 </body>
 </html>
